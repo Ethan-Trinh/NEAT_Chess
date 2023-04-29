@@ -1,5 +1,9 @@
 # NEAT_Chess
-```
-  Ethan Trinh
-  ethanktrinh@gmail.com
-```
+This project will be an implementation of a NeuroEvolution of Augmenting Topologies (NEAT) algorithm for the game of Chess.
+
+## Info
+- Ethan Trinh
+- ethanktrinh@gmail.com
+
+## Sources
+[Pygame Chess Tutorial](https://www.youtube.com/watch?v=OpL0Gcfn4B4)
