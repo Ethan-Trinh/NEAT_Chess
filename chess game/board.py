@@ -4,10 +4,16 @@ from move import Move
 
 class Square:
 
+    ALPHACOLS = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
+
     def __init__(self, row, col, piece=None):
         self.row = row
         self.col = col
         self.piece = piece
+        self.alphacols = self.ALPHACOLS[col]
+
+    def __eq__(self, other):
+        return self.row == other.row and self.col == other.col
 
     def has_piece(self):
         return self.piece != None
@@ -31,6 +37,11 @@ class Square:
                 return False
         
         return True
+    
+    @staticmethod
+    def get_alphacol(col):
+        ALPHACOLS = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h'}
+        return ALPHACOLS[col]
 
 class Board:
 
@@ -174,7 +185,7 @@ class Board:
                 (row-1, col-1),      # up-left
                 (row+0, col+1),      # right
                 (row+0, col-1),      # left
-                (row-1, col+0),      # down
+                (row+1, col+0),      # down
                 (row+1, col+1),      # down-right
                 (row+1, col-1),      # down-left
             ]
