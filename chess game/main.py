@@ -50,7 +50,7 @@ class Main:
 
                         # Check if Valid Piece (turn player color)
                         if piece.color == game.turn_player:
-                            board.calc_moves(piece, clicked_row, clicked_col)
+                            board.calc_moves(piece, clicked_row, clicked_col, bool=True)
                             dragger.save_initial(event.pos)
                             dragger.drag_piece(piece)
 
@@ -92,8 +92,11 @@ class Main:
 
                         # Validates if move is valid, then moves piece
                         if board.valid_move(dragger.piece, move):
+                            # normal capture
                             captured = board.squares[relesed_row][relesed_col].has_piece()
                             board.move(dragger.piece, move)
+
+                            board.set_en_passant_true(dragger.piece)
 
                             # sound method
                             game.play_sound(captured)
@@ -107,6 +110,13 @@ class Main:
                             game.next_turn()
 
                     dragger.undrag_piece()
+                
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        game.reset()
+                        game = self.game
+                        board = self.game.board
+                        dragger = self.game.dragger
 
                 # Close application
                 if event.type == pygame.QUIT:
